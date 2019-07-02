@@ -33,6 +33,7 @@
         NSDictionary *argsMap = call.arguments;
         WebAuthenticator *authenticator = [[WebAuthenticator alloc] initFromDictionary:argsMap];
         authenticator.eventSink = _eventSink;
+        authenticators = [NSMutableDictionary dictionary];
         [authenticators setObject:authenticator  forKey:authenticator.identifier];
         if(authenticator.useEmbeddedBrowser)
             [WebAuthenticatorWindow presentAuthenticator: authenticator];
