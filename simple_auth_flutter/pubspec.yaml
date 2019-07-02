@@ -18,7 +18,3 @@ flutter:
   plugin:
     androidPackage: clancey.simpleauth.simpleauthflutter
     pluginClass: SimpleAuthFlutterPlugin
-
-dev_dependencies_overrides:
-  simple_auth:
-    path: ../simple_auth
