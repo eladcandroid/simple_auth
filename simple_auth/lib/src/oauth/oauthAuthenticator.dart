@@ -23,7 +23,7 @@ class OAuthAuthenticator extends WebAuthenticator {
   Future<Map<String, dynamic>> getTokenPostData(String clientSecret) async {
     var map = await super.getTokenPostData(clientSecret);
     map["redirect_uri"] = redirectUrl;
-    if (usePkce){
+    if (usePkce != null && usePkce){
       map["code_verifier"] = verifier;
     }
 
@@ -33,7 +33,7 @@ class OAuthAuthenticator extends WebAuthenticator {
   @override
   Future resetAuthenticator() {
     // Generated a new code verifier at the beginning of the authorize flow
-    if (usePkce){
+    if (usePkce != null && usePkce){
       verifier = _generateCodeVerifier();
     }
     return super.resetAuthenticator();
@@ -42,7 +42,7 @@ class OAuthAuthenticator extends WebAuthenticator {
   @override
   Future<Map<String, dynamic>> getInitialUrlQueryParameters() async {
     var map = await super.getInitialUrlQueryParameters();
-    if (usePkce) {
+    if (usePkce != null && usePkce) {
       map["code_challenge_method"] = "S256";
       map["code_challenge"] = _encodeVerifier(verifier);
     }
